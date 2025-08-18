@@ -160,9 +160,33 @@ allDetails.forEach((targetDetail) => {
 });
 
 // Tech Stack Card Display Logic
-const cards = document.querySelectorAll(".tech-stack-card");
+const cards = [...document.querySelectorAll(".tech-stack-card")];
 const viewBtn = document.querySelector(".view-more-btn");
-let visible = 8; // show first 8 on load
+let visible = 8;
+
+function showBatch(count = 4) {
+  const hidden = cards.filter(card => !card.classList.contains('is-revealed'));
+  const batch = hidden.slice(0, count);
+
+  batch.forEach((card, i) => {
+    // 1) make it participate in layout + set initial animated state
+    card.classList.add('is-revealed');
+
+    // 2) set a small stagger delay for prettier reveal
+    card.style.setProperty('--delay', `${i * 70}ms`);
+
+    // 3) next frame: toggle the end state so CSS transitions can run
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        card.classList.add('appear');
+      });
+    });
+  });
+
+  if (cards.every(card => card.classList.contains('is-revealed'))) {
+    viewBtn.style.display = 'none';
+  }
+}
 
 function showCards() {
   for (let card = 0; card < visible; card++) {
@@ -173,9 +197,16 @@ function showCards() {
   }
 }
 
-showCards();
+// initial paint (first 8 visible immediately)
+cards.slice(0, visible).forEach((card, i) => {
+  card.classList.add('is-revealed');
+  // run the “appear” step so initial 8 also animate nicely
+  card.style.setProperty('--delay', `${i * 70}ms`);
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => card.classList.add('appear'));
+  });
+});
 
 viewBtn.addEventListener("click", () => {
-  visible += 4; // reveal 4 more per click
-  showCards();
+  showBatch(4);
 });
