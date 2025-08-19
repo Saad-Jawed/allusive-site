@@ -687,7 +687,8 @@ video#preloader-video {
 
 @media (max-width: 767px) {
     .header {
-        position: fixed;
+        position: sticky;
+        margin: 0px 0px -101px 0px;
         top: 0;
         left: 0;
         right: 0;
@@ -742,7 +743,8 @@ video#preloader-video {
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .header {
-        position: fixed;
+        position: sticky;
+        margin: 0px 0px -101px 0px;
         top: 0;
     }
 
