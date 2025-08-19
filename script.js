@@ -1,18 +1,51 @@
 // Mobile Menu Toggle Logic
-document.querySelector(".sidebar-icon button").addEventListener("click", () => {
-  document.querySelector(".sidebar-area").classList.add("active");
-});
-document.querySelector(".sidebar-trigger.close").addEventListener("click", () => {
-  document.querySelector(".sidebar-area").classList.remove("active");
+const openBtn  = document.querySelector('.sidebar-trigger.open');
+const closeBtn = document.querySelector('.sidebar-trigger.close');
+const sidebar  = document.getElementById('sidebar-area');
+const backdrop = document.getElementById('backdrop');
+
+function openSidebar() {
+  sidebar.classList.add('active');
+  backdrop.classList.add('show');
+  document.body.classList.add('no-scroll');
+
+  // a11y
+  openBtn?.setAttribute('aria-expanded', 'true');
+}
+
+function closeSidebar() {
+  sidebar.classList.remove('active');
+  backdrop.classList.remove('show');
+  document.body.classList.remove('no-scroll');
+
+  openBtn?.setAttribute('aria-expanded', 'false');
+}
+
+openBtn?.addEventListener('click', openSidebar);
+closeBtn?.addEventListener('click', closeSidebar);
+backdrop?.addEventListener('click', closeSidebar);
+
+// Optional: close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+    closeSidebar();
+  }
 });
 
-document.querySelectorAll(".side-menu-wrap .menu-item-has-children > a").forEach(item => {
-  item.addEventListener("click", e => {
-    e.preventDefault();
-    const parent = item.parentElement;
-    parent.classList.toggle("open");
-  });
-});
+// document.querySelector(".sidebar-icon button").addEventListener("click", () => {
+//   document.querySelector(".sidebar-area").classList.add("active");
+// });
+// document.querySelector(".sidebar-trigger.close").addEventListener("click", () => {
+//   document.querySelector(".sidebar-area").classList.remove("active");
+// });
+
+// document.querySelectorAll(".side-menu-wrap .menu-item-has-children > a").forEach(item => {
+//   item.addEventListener("click", e => {
+//     e.preventDefault();
+//     const parent = item.parentElement;
+//     parent.classList.toggle("open");
+//   });
+// });
 
 // Inner Navigation Display Logic
 const innerNav = document.getElementById("inner-nav");
