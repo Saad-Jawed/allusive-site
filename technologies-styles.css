@@ -22,6 +22,11 @@ body {
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+body::selection {
+    background: #000;
+    color: white;
+}
+
 /* Header Styles */
 a {
     text-decoration: none;
@@ -1143,7 +1148,8 @@ section.tech-section {
 .card-back h3 {
     font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
+    padding-top: 1rem;
     color: #7200FF;
 }
 
@@ -1374,7 +1380,7 @@ section.faq-section {
 .faq-section .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
