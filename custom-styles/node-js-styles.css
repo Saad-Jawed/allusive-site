@@ -819,6 +819,7 @@ section.process-title p {
     background: transparent;
     border: none;
     color: #ccc;
+    font: inherit;
     font-size: 1rem;
     text-align: left;
     cursor: pointer;
