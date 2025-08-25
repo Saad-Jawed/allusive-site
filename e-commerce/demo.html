@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Products</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #111;
+        }
+
+        .featured-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .featured-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .featured-section p {
+            color: #7e7e7e;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            display: block;
+            transition: opacity 0.4s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease; */
+        }
+
+        .product-image img:first-child {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-image img:last-child {
+            opacity: 0;
+            z-index: 2;
+        }
+
+        /* Second image hidden by default */
+        /* .product-image img:nth-child(2) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        } */
+
+        /* On hover show second image */
+        .product-card:hover .product-image img:nth-child(1) {
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image img:nth-child(2) {
+            opacity: 1;
+        }
+
+        /* Action buttons */
+        .product-actions {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            background: #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            background: #38c172;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1rem;
+            margin: 0.7rem 0;
+        }
+
+        .product-info h3:hover {
+            cursor: pointer;
+            color: #38c172;
+        }
+
+        .product-info .price {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-info .price .price-divider {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #9b9b9b;
+        }
+
+        .product-info .price .current-disc-price {
+            color: #38c172;
+        }
+
+        .product-info .price .original-price {
+            text-decoration: line-through;
+            color: #9b9b9b;
+            margin-left: 5px;
+            font-size: 0.8rem;
+
+        }
+
+        /* Personalize button */
+        .personalize-btn {
+            display: inline-block;
+            border: 1px solid rgb(182, 182, 182);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .product-card:hover .personalize-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .personalize-btn i {
+            margin-right: 5px;
+            font-size: 13px;
+        }
+
+        .personalize-btn:hover {
+            background: #38c172;
+            color: #fff;
+        }
+
+        .badge-container {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            flex-wrap: wrap;
+            z-index: 5;
+        }
+
+        .badge {
+            padding: 0 6px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .badge.hot {
+            background: #f09155;
+            /* Orange/Red */
+        }
+
+        .badge.sale {
+            background: #2ebb77;
+            /* Green */
+        }
+
+        .badge.new {
+            background: #b479d9;
+            /* Blue */
+        }
+
+        .badge.discount {
+            background: #38c172;
+            /* Same green as Sale */
+        }
+
+        @media screen and (max-width: 1440px) {
+            .featured-section h2 {
+                font-size: 2.25rem;
+            }
+            
+            .featured-section p {
+                font-size: 1.125rem;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .featured-section h2 {
+                font-size: 2rem;
+            }
+
+            .featured-section p {
+                font-size: 1.063rem;
+            }
+        }
+
+        @media screen and (max-width: 991px) {
+            .featured-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .featured-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .featured-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .featured-section p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="featured-section">
+        <h2>Featured products</h2>
+        <p>What's more, we do it right!</p>
+
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/zone-sweatshirt.jpg" alt="Zone Sweatshirt">
+                    <img src="assets/zone-sweatshirt.jpg" alt="Zone Sweatshirt">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Zone Sweatshirt</h3>
+                    <div class="price">
+                        <span class="current-price">$19.95</span>
+                        <span class="price-divider">-</span>
+                        <span class="current-price">$159.95</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/zoo-mens-t-shirt.jpg" alt="Zoo Men's t-shirt">
+                    <img src="assets/zoo-mens-t-shirt.jpg" alt="Zoo Men's t-shirt">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Zoo Men’s t-shirt</h3>
+                    <div class="price">
+                        <span class="current-price">$14.95</span>
+                        <span class="price-divider">-</span>
+                        <span class="current-price">$119.95</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge hot">Hot</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/toodler-t-shirt.jpg" alt="Toddler T-shirt">
+                    <img src="assets/toodler-t-shirt-hover.jpg" alt="Toddler T-shirt">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Toddler T-shirt</h3>
+                    <div class="price">
+                        <span class="current-price">$26.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge discount">-10%</span>
+                    <span class="badge hot">Hot</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/fine-jersey-tee.jpg" alt="Fine Jersey Tee">
+                    <img src="assets/toodler-t-shirt-hover.jpg" alt="Fine Jersey Tee">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Fine Jersey Tee</h3>
+                    <div class="price">
+                        <span class="current-disc-price">$28.00</span>
+                        <span class="original-price">$31.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge sale">Sale!</span>
+                    <span class="badge new">New</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/kids-hoodie.jpg" alt="Kids Hoodie">
+                    <img src="assets/kids-hoodie-hover.jpg" alt="Kids Hoodie">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Kids Hoodie</h3>
+                    <div class="price">
+                        <span class="current-price">$26.00</span>
+                        <span class="price-divider">-</span>
+                        <span class="current-price">$29.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge sale">Sale!</span>
+                    <span class="badge new">New</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/Youth Short Sleeve Tee.jpg" alt="Youth Short Sleeve Tee">
+                    <img src="assets/Youth Short Sleeve Tee. hoverjpg.jpg" alt="Youth Short Sleeve Tee">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Youth Short Sleeve Tee</h3>
+                    <div class="price">
+                        <span class="current-price">$26.00</span>
+                        <span class="price-divider">-</span>
+                        <span class="current-price">$29.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge sale">Sale!</span>
+                    <span class="badge new">New</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/midweight-cotton-tee.jpg" alt="Midweight Cotton Tee">
+                    <img src="assets/midweight-cotton-tee.-hoverjpg.jpg" alt="Midweight Cotton Tee">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Midweight Cotton Tee</h3>
+                    <div class="price">
+                        <span class="current-price">$26.00</span>
+                        <span class="price-divider">-</span>
+                        <span class="current-price">$29.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="badge-container">
+                    <span class="badge hot">Hot</span>
+                </div>
+                <div class="product-image">
+                    <img src="assets/Youth Short Sleeve Tee.jpg" alt="Hooded Sweatshirt">
+                    <img src="assets/Youth Short Sleeve Tee. hoverjpg.jpg" alt="Hooded Sweatshirt">
+                    <div class="product-actions">
+                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
+                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3>Hooded Sweatshirt</h3>
+                    <div class="price">
+                        <span class="current-price">$28.00</span>
+                    </div>
+                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
