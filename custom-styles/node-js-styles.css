@@ -1,3 +1,7 @@
+body {
+    overflow-x: visible;
+}
+
 /* Hero Section */
 section.hero-section {
     position: relative;
@@ -218,9 +222,9 @@ section.why-digital-silk {
 
 .left-sec {
     flex: 1;
-    position: sticky;
-    top: 100px;
     align-self: flex-start;
+    position: sticky !important;
+    top: 100px;
 }
 
 .left-sec h2 {
@@ -287,6 +291,10 @@ section.why-digital-silk p,
 }
 
 @media (max-width: 767px) {
+    body {
+        overflow-x: hidden;
+    }
+
     .container-inner-sec {
         flex-direction: column;
     }
