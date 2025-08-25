@@ -824,7 +824,7 @@ body.no-scroll {
 /* Technologies Section Styles */
 .technologies-section {
     position: relative;
-    background-image: url('assets/img/bg-img/tech-hero-banner.png');
+    background-image: url('../assets/img/bg-img/tech-hero-banner.png');
     background-size: cover;
     background-position: center right;
     height: 70vh;
@@ -901,7 +901,7 @@ section.hero-section .new-banner {
     top: 0;
     left: 0;
     background: linear-gradient(94deg, #300f61 16.74%, #9536e500 101.14%);
-    background-image: url("assets/img/bg-img/tech-hero-banner.png");
+    background-image: url("../assets/img/bg-img/tech-hero-banner.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1000,7 +1000,7 @@ section.tech-world-section {
 
 /* Technologies Section */
 section.tech-section {
-    background-image: url("assets/img/bg-img/tech-section-bg.png");
+    background-image: url("../assets/img/bg-img/tech-section-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1385,7 +1385,7 @@ section.faq-section {
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    background-image: url("assets/img/bg-img/Faq.png");
+    background-image: url("../assets/img/bg-img/Faq.png");
     background-repeat: no-repeat;
     background-position: center;
 }
