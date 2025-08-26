@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
             background: #fff;
-            color: #111;
+            color: #000;
         }
 
         .featured-section {
@@ -30,7 +30,7 @@
         .featured-section h2 {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .featured-section p {
@@ -42,33 +42,52 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
+            grid-template-columns: repeat(4, 1fr);
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            /* gap: 0.1rem; */
+            /* max-width: 1100px; */
             margin: auto;
         }
 
         .product-card {
-            background: #fff;
-            border-radius: 16px;
+            /* width: 100%; */
+            /* height: calc(100% + 20px); */
             position: relative;
+            background: #fff;
+            border-radius: 12px;
             overflow: hidden;
+            transform-origin: center;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 14px 14px 0 14px;
+            transform: scale(0.96) translateY(0);
+        }
+
+        .product-card:hover {
+            transform: scale(1) translateY(-10px);
+            box-shadow: 0 7px 30px rgba(0, 0, 0, 0.13);
         }
 
         .product-image {
             cursor: pointer;
             position: relative;
             width: 100%;
-            height: 320px;
+            /* height: 400px; */
             overflow: hidden;
+            border-radius: 13px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1);
         }
 
         .product-image img {
             width: 100%;
-            display: block;
-            transition: opacity 0.4s ease;
+            height: 100%;
+            object-fit: cover;
+            /* display: block; */
+            transition: opacity 0.4s ease-in-out;
+
             position: absolute;
             top: 0;
             left: 0;
@@ -119,6 +138,7 @@
 
         .product-card:hover .product-actions {
             opacity: 1;
+            /* transform: translateY(-5px); */
         }
 
         .action-btn {
@@ -134,6 +154,26 @@
             transition: all 0.2s ease;
             color: #000;
             font-size: 14px;
+            position: relative;
+        }
+
+        .action-btn::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 8px;
+            background: #000;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
 
         .action-btn:hover {
@@ -142,9 +182,19 @@
             transform: scale(1.1);
         }
 
+        .action-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .product-info {
             padding: 15px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-info {
+            transform: translateY(-5px);
         }
 
         .product-info h3 {
@@ -183,7 +233,7 @@
 
         /* Personalize button */
         .personalize-btn {
-            display: inline-block;
+            display: none;
             border: 1px solid rgb(182, 182, 182);
             border-radius: 8px;
             padding: 6px 14px;
@@ -192,13 +242,10 @@
             color: #111;
             text-decoration: none;
             transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
         }
 
         .product-card:hover .personalize-btn {
-            opacity: 1;
-            visibility: visible;
+            display: inline-block;
         }
 
         .personalize-btn i {
@@ -213,8 +260,8 @@
 
         .badge-container {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 20px;
+            left: 20px;
             display: flex;
             flex-direction: column;
             gap: 3px;
@@ -252,13 +299,114 @@
             /* Same green as Sale */
         }
 
+        .color-swatches {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .color-swatch {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            padding: 2px;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+            border: 1px solid #7e7e7e;
+        }
+
+        .color-swatch span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .color-swatch:hover {
+            /* border-color: #38c172; */
+        }
+
+        .color-swatch[data-color="black"] span {
+            background: #000;
+        }
+
+        .color-swatch[data-color="brown"] span {
+            background: #d7a983;
+        }
+
+        .color-swatch[data-color="red"] span {
+            background: #dd3333;
+        }
+
+        .color-swatch[data-color="white"] span {
+            background: #fff;
+            /* border: 1px solid #ddd; */
+        }
+
+        .color-swatch[data-color="yellow"] span {
+            background: #eeee22;
+        }
+
+        .show-more {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Tooltip for colors */
+        .color-swatch::after,
+        .show-more::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 8px;
+            background: #111;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .show-more::after {
+            bottom: 28%;
+            left: 64%;
+            background: #111;
+        }
+
+        .color-swatch:hover::after,
+        .show-more:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hidden {
+            display: none;
+        }
+
         @media screen and (max-width: 1440px) {
             .featured-section h2 {
                 font-size: 2.25rem;
             }
-            
+
             .featured-section p {
                 font-size: 1.125rem;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -280,6 +428,14 @@
             .featured-section p {
                 font-size: 1rem;
             }
+
+            .product-card {
+                padding: 10px 10px 0 10px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media screen and (max-width: 767px) {
@@ -289,6 +445,19 @@
 
             .featured-section p {
                 font-size: 0.9rem;
+            }
+
+            .product-card {
+                padding: 8px 8px 0 8px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-actions .action-btn {
+                width: 30px;
+                height: 30px;
             }
         }
     </style>
@@ -307,10 +476,14 @@
                     <img src="assets/zone-sweatshirt.jpg" alt="Zone Sweatshirt">
                     <img src="assets/zone-sweatshirt.jpg" alt="Zone Sweatshirt">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -330,10 +503,14 @@
                     <img src="assets/zoo-mens-t-shirt.jpg" alt="Zoo Men's t-shirt">
                     <img src="assets/zoo-mens-t-shirt.jpg" alt="Zoo Men's t-shirt">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -356,10 +533,14 @@
                     <img src="assets/toodler-t-shirt.jpg" alt="Toddler T-shirt">
                     <img src="assets/toodler-t-shirt-hover.jpg" alt="Toddler T-shirt">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -367,7 +548,7 @@
                     <div class="price">
                         <span class="current-price">$26.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+
                 </div>
             </div>
 
@@ -381,10 +562,14 @@
                     <img src="assets/fine-jersey-tee.jpg" alt="Fine Jersey Tee">
                     <img src="assets/toodler-t-shirt-hover.jpg" alt="Fine Jersey Tee">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -393,7 +578,7 @@
                         <span class="current-disc-price">$28.00</span>
                         <span class="original-price">$31.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+
                 </div>
             </div>
 
@@ -406,10 +591,14 @@
                     <img src="assets/kids-hoodie.jpg" alt="Kids Hoodie">
                     <img src="assets/kids-hoodie-hover.jpg" alt="Kids Hoodie">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -419,7 +608,25 @@
                         <span class="price-divider">-</span>
                         <span class="current-price">$29.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                    <!-- Add this HTML after each .price div -->
+                    <div class="color-swatches">
+                        <span class="color-swatch" data-color="black" data-tooltip="Black">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch" data-color="brown" data-tooltip="Brown">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="red" data-tooltip="Red">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="white" data-tooltip="White">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="yellow" data-tooltip="Yellow">
+                            <span></span>
+                        </span>
+                        <span class="show-more" data-tooltip="Show more">+3</span>
+                    </div>
                 </div>
             </div>
 
@@ -432,10 +639,14 @@
                     <img src="assets/Youth Short Sleeve Tee.jpg" alt="Youth Short Sleeve Tee">
                     <img src="assets/Youth Short Sleeve Tee. hoverjpg.jpg" alt="Youth Short Sleeve Tee">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -445,7 +656,25 @@
                         <span class="price-divider">-</span>
                         <span class="current-price">$29.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                    <!-- Add this HTML after each .price div -->
+                    <div class="color-swatches">
+                        <span class="color-swatch" data-color="black" data-tooltip="Black">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch" data-color="brown" data-tooltip="Brown">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="red" data-tooltip="Red">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="white" data-tooltip="White">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="yellow" data-tooltip="Yellow">
+                            <span></span>
+                        </span>
+                        <span class="show-more" data-tooltip="Show more">+3</span>
+                    </div>
                 </div>
             </div>
 
@@ -458,10 +687,14 @@
                     <img src="assets/midweight-cotton-tee.jpg" alt="Midweight Cotton Tee">
                     <img src="assets/midweight-cotton-tee.-hoverjpg.jpg" alt="Midweight Cotton Tee">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -471,7 +704,25 @@
                         <span class="price-divider">-</span>
                         <span class="current-price">$29.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
+                    <!-- Add this HTML after each .price div -->
+                    <div class="color-swatches">
+                        <span class="color-swatch" data-color="black" data-tooltip="Black">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch" data-color="brown" data-tooltip="Brown">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="red" data-tooltip="Red">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="white" data-tooltip="White">
+                            <span></span>
+                        </span>
+                        <span class="color-swatch hidden" data-color="yellow" data-tooltip="Yellow">
+                            <span></span>
+                        </span>
+                        <span class="show-more" data-tooltip="Show more">+3</span>
+                    </div>
                 </div>
             </div>
 
@@ -480,13 +731,17 @@
                     <span class="badge hot">Hot</span>
                 </div>
                 <div class="product-image">
-                    <img src="assets/Youth Short Sleeve Tee.jpg" alt="Hooded Sweatshirt">
-                    <img src="assets/Youth Short Sleeve Tee. hoverjpg.jpg" alt="Hooded Sweatshirt">
+                    <img src="assets/Hooded Sweatshirt.jpg" alt="Hooded Sweatshirt">
+                    <img src="assets/Hooded Sweatshirt-hoevr.jpg" alt="Hooded Sweatshirt">
                     <div class="product-actions">
-                        <div class="action-btn"><i class="fa-regular fa-star"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-bag-shopping"></i></div>
-                        <div class="action-btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="action-btn" data-tooltip="Add to wishlist"><i class="fa-regular fa-star"></i></div>
+                        <div class="action-btn" data-tooltip="Compare"><i
+                                class="fa-solid fa-arrow-right-arrow-left"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Select options"><i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <div class="action-btn" data-tooltip="Quick view"><i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
                 </div>
                 <div class="product-info">
@@ -494,12 +749,22 @@
                     <div class="price">
                         <span class="current-price">$28.00</span>
                     </div>
-                    <a href="#" class="personalize-btn"><i class="fa-solid fa-pencil"></i>Personalize</a>
                 </div>
             </div>
-
         </div>
     </section>
+
+    <script>
+        document.querySelectorAll('.show-more').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const hiddenSwatches = this.parentElement.querySelectorAll('.color-swatch.hidden');
+                hiddenSwatches.forEach(swatch => {
+                    swatch.classList.remove('hidden');
+                });
+                this.style.display = 'none';
+            });
+        });
+    </script>
 
 </body>
 
