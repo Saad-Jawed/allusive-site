@@ -1088,8 +1088,20 @@ section.process-title p {
 }
 
 .testimonial-container {
+    position: relative;
     max-width: 1140px;
     margin: 0 auto;
+}
+
+.testimonial-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 400ms ease;
+    will-change: transform;
 }
 
 .testimonial-header {
@@ -1098,7 +1110,7 @@ section.process-title p {
     gap: 1rem;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
 }
 
 .testimonial-title {
@@ -1130,6 +1142,7 @@ section.process-title p {
 .testimonial-card {
     display: grid;
     place-content: center;
+    flex: 0 0 100%;
     padding: 3rem 0 0;
 }
 
@@ -1192,7 +1205,7 @@ section.process-title p {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .testimonial-arrow {
@@ -1201,11 +1214,13 @@ section.process-title p {
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.2s ease;
-    color: #000;
+    color: #d5d5d5;
 }
 
-.testimonial-arrow:hover {
+.testimonial-arrow:hover,
+.testimonial-arrow:focus {
     transform: scale(1.2);
+    color: #000;
 }
 
 /* === Responsive === */
@@ -1234,7 +1249,7 @@ section.process-title p {
     .testimonial-header {
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
     }
 }
 
@@ -1246,7 +1261,7 @@ section.process-title p {
     .testimonial-header {
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
     }
 
     .rating-item img {
@@ -1284,7 +1299,7 @@ section.process-title p {
     flex-wrap: wrap;
     /* gap: 1rem; */
     border-bottom: 1px solid #D5D5D5;
-    margin-bottom: 3rem;
+    margin: 0 auto 3rem;
     /* padding-bottom: 0.5rem; */
     overflow-x: auto;
     scrollbar-width: none;
@@ -1326,6 +1341,7 @@ section.process-title p {
     border-right: 1px solid #D5D5D5;
     outline: none;
     padding: 1rem 3rem;
+    font: inherit;
     font-size: 1rem;
     font-weight: 500;
     color: #2B2B2B;
@@ -1340,6 +1356,7 @@ section.process-title p {
 .nodejs-tab:hover {
     cursor: pointer;
     color: #000000;
+    border-bottom: 1px solid black;
     /* transform: scale(1.05); */
 }
 

@@ -6,7 +6,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Digital Marketing Agency Driving Growth | Allusive Digital">
-  <meta property="og:description" content="Allusive Digital is a digital marketing agency specialising in SEO, PPC, social media, and content. Partner with us to boost your online visibility and drive results.">
+  <meta property="og:description"
+    content="Allusive Digital is a digital marketing agency specialising in SEO, PPC, social media, and content. Partner with us to boost your online visibility and drive results.">
   <meta property="og:image" content="https://allusivedigital.com/assets/img/logo/preview.png?v=3">
   <meta property="og:url" content="https://allusivedigital.com/">
 
@@ -767,7 +768,7 @@
     /*location       */
     section.main-parent {
       background: #150640;
-      padding: 40px 1rem 100px ;
+      padding: 40px 1rem 100px;
     }
 
     section.main-parent .container {
@@ -1639,8 +1640,20 @@
     }
 
     .testimonial-container {
+      position: relative;
       max-width: 1140px;
       margin: 0 auto;
+    }
+
+    .testimonial-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 400ms ease;
+      will-change: transform;
     }
 
     .testimonial-header {
@@ -1649,7 +1662,7 @@
       gap: 1rem;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 3rem;
+      /* margin-bottom: 3rem; */
     }
 
     .testimonial-title {
@@ -1681,6 +1694,7 @@
     .testimonial-card {
       display: grid;
       place-content: center;
+      flex: 0 0 100%;
       padding: 3rem 0 0;
     }
 
@@ -1743,7 +1757,7 @@
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     .testimonial-arrow {
@@ -1752,11 +1766,13 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: transform 0.2s ease;
-      color: #000;
+      color: #d5d5d5;
     }
 
-    .testimonial-arrow:hover {
+    .testimonial-arrow:hover,
+    .testimonial-arrow:focus {
       transform: scale(1.2);
+      color: #000;
     }
 
     /* === Responsive === */
@@ -1785,7 +1801,7 @@
       .testimonial-header {
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
       }
     }
 
@@ -1797,7 +1813,7 @@
       .testimonial-header {
         align-items: center;
         gap: 2rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
       }
 
       .rating-item img {
@@ -1835,7 +1851,7 @@
       flex-wrap: wrap;
       /* gap: 1rem; */
       border-bottom: 1px solid #D5D5D5;
-      margin-bottom: 3rem;
+      margin: 0 auto 3rem;
       /* padding-bottom: 0.5rem; */
       overflow-x: auto;
       scrollbar-width: none;
@@ -1891,6 +1907,7 @@
     .nodejs-tab:hover {
       cursor: pointer;
       color: #000000;
+      border-bottom: 1px solid black;
       /* transform: scale(1.05); */
     }
 
@@ -3522,7 +3539,7 @@
 
       <!-- New Client testimonials Section -->
       <section class="testimonials-section">
-        <div class=".testimonial-container">
+        <div class="testimonial-container">
           <div class="testimonial-header">
             <h2 class="testimonial-title">Client Testimonials</h2>
 
@@ -3540,37 +3557,143 @@
 
           </div>
 
-          <div class="testimonial-card">
-            <div class="testimonial-stars">
-              <img src="assets/img/icon/star.png" alt="Rating Star">
-              <img src="assets/img/icon/star.png" alt="Rating Star">
-              <img src="assets/img/icon/star.png" alt="Rating Star">
-              <img src="assets/img/icon/star.png" alt="Rating Star">
-              <img src="assets/img/icon/star.png" alt="Rating Star">
-            </div>
-            <p class="testimonial-text">
-              The team's deep understanding of our business's nature was impressive. Their technical knowledge was
-              evident in ensuring the app functioned smoothly.
-            </p>
+          <div class="testimonial-viewport" aria-live="polite" tabindex="0">
+            <div class="testimonial-track">
+              <!-- Card 1 -->
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                </div>
+                <p class="testimonial-text">
+                  The team's deep understanding of our business's nature was impressive. Their technical knowledge was
+                  evident in ensuring the app functioned smoothly.
+                </p>
 
-            <!-- Reviewer Info -->
-            <div class="testimonial-reviewer">
-              <img src="assets/img/testi/user-testi.png" alt="Testimonial from Joseph D'Amora" class="reviewer-img" />
-              <div class="reviewer-info">
-                <strong>Joseph D'Amora</strong>
-                <span class="reviewer-role">Director of Inside Sales</span>
+                <!-- Reviewer Info -->
+                <div class="testimonial-reviewer">
+                  <img src="assets/img/testi/joseph-testi.png" alt="Testimonial from Joseph D'Amora"
+                    class="reviewer-img" />
+                  <div class="reviewer-info">
+                    <strong>Joseph D'Amora</strong>
+                    <span class="reviewer-role">Director of Inside Sales</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                </div>
+                <p class="testimonial-text">
+                  BitsWits transformed my vision into a stunning, user-friendly app. I couldn't be happier with the
+                  result and their professionalism.
+                </p>
+
+                <!-- Reviewer Info -->
+                <div class="testimonial-reviewer">
+                  <img src="assets/img/testi/ryan-testi.png" alt="Testimonial from Joseph D'Amora"
+                    class="reviewer-img" />
+                  <div class="reviewer-info">
+                    <strong>Ryan Jaden</strong>
+                    <span class="reviewer-role">Technical Team Lead</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                </div>
+                <p class="testimonial-text">
+                  I am thoroughly satisfied with the project management provided by BitsWits. Their attention to detail
+                  and seamless communication made the entire process stress-free and efficient!
+                </p>
+
+                <!-- Reviewer Info -->
+                <div class="testimonial-reviewer">
+                  <img src="assets/img/testi/kaylee-testi.png" alt="Testimonial from Joseph D'Amora"
+                    class="reviewer-img" />
+                  <div class="reviewer-info">
+                    <strong>Kaylee Slone</strong>
+                    <span class="reviewer-role">Digital Marketing Manager</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                </div>
+                <p class="testimonial-text">
+                  They not only listened attentively to our needs but also provided valuable insights and suggestions.
+                  BitsWits truly understands how to turn ideas into successful apps!
+                </p>
+
+                <!-- Reviewer Info -->
+                <div class="testimonial-reviewer">
+                  <img src="assets/img/testi/james-testi.png" alt="Testimonial from Joseph D'Amora"
+                    class="reviewer-img" />
+                  <div class="reviewer-info">
+                    <strong>James Moss</strong>
+                    <span class="reviewer-role">EVP Business Development</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="testimonial-card">
+                <div class="testimonial-stars">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                  <img src="assets/img/icon/star.png" alt="Rating Star">
+                </div>
+                <p class="testimonial-text">
+                  Their tireless efforts in making the app not only responsible but also visually stunning were truly
+                  remarkable. BitsWits exceeded all our expectations!
+                </p>
+
+                <!-- Reviewer Info -->
+                <div class="testimonial-reviewer">
+                  <img src="assets/img/testi/mauryo-testi.png" alt="Testimonial from Joseph D'Amora"
+                    class="reviewer-img" />
+                  <div class="reviewer-info">
+                    <strong>Mauryo Jones</strong>
+                    <span class="reviewer-role">VP Safety, Health & Security</span>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- Arrows -->
-            <div class="testimonial-nav">
-              <button aria-label="Previous testimonial" class="testimonial-arrow">
-                <i class="fa-solid fa-arrow-left"></i>
-              </button>
-              <button aria-label="Next testimonial" class="testimonial-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </div>
+          <!-- Arrows -->
+          <div class="testimonial-nav">
+            <button aria-label="Previous testimonial" class="testimonial-arrow" data-prev>
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button aria-label="Next testimonial" class="testimonial-arrow" data-next>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
           </div>
         </div>
       </section>
@@ -4513,7 +4636,140 @@
     });
   </script>
 
+  <!-- Testimonial Slider Logic -->
+  <!-- <script>
+    (function () {
+      const track = document.querySelector('.testimonial-track');
+      const slides = Array.from(track.querySelectorAll('.testimonial-card'));
 
+      const btnPrev = document.querySelector('[data-prev]');
+      const btnNext = document.querySelector('[data-next]');
+
+      let index = 0;
+
+      function update() {
+        // move the track
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        // manage disabled state (remove these two lines if you want infinite loop)
+        // btnPrev.disabled = index === 0;
+        // btnNext.disabled = index === slides.length - 1;
+      }
+
+      // go to a specific slide (bounds-safe)
+      function goTo(i) {
+        index = Math.max(0, Math.min(i, slides.length - 1));
+        update();
+      }
+
+      // wire up clicks
+      // btnPrev.addEventListener('click', () => goTo(index - 1));
+      // btnNext.addEventListener('click', () => goTo(index + 1));
+
+      btnPrev.addEventListener('click', () => {
+        index = (index - 1 + slides.length) % slides.length;
+        update();
+      });
+      btnNext.addEventListener('click', () => {
+        index = (index + 1) % slides.length;
+        update();
+      });
+
+      // keyboard support (left/right arrows)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          index = (index - 1 + slides.length) % slides.length;
+          update();
+        }
+        if (e.key === 'ArrowRight') {
+          index = (index + 1) % slides.length;
+          update();
+        }
+      });
+      // document.addEventListener('keydown', (e) => {
+      //   if (e.key === 'ArrowLeft') goTo(index - 1);
+      //   if (e.key === 'ArrowRight') goTo(index + 1);
+      // });
+
+      // OPTIONAL: infinite loop version (swap the two click handlers above with this)
+      // btnPrev.addEventListener('click', () => {
+      //   index = (index - 1 + slides.length) % slides.length;
+      //   update();
+      // });
+      // btnNext.addEventListener('click', () => {
+      //   index = (index + 1) % slides.length;
+      //   update();
+      // });
+
+      // initialise
+      update();
+    })();
+  </script> -->
+
+  <script>
+    (function () {
+      const track = document.querySelector('.testimonial-track');
+      let slides = Array.from(track.querySelectorAll('.testimonial-card'));
+
+      const btnPrev = document.querySelector('[data-prev]');
+      const btnNext = document.querySelector('[data-next]');
+
+      // Clone first and last
+      const firstClone = slides[0].cloneNode(true);
+      const lastClone = slides[slides.length - 1].cloneNode(true);
+
+      firstClone.classList.add('clone');
+      lastClone.classList.add('clone');
+
+      // Append/prepend clones
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, slides[0]);
+
+      // Update slides list after cloning
+      slides = Array.from(track.querySelectorAll('.testimonial-card'));
+
+      let index = 1; // start at first *real* slide
+      const slideWidth = 100; // % (since each is 100%)
+      track.style.transform = `translateX(-${index * slideWidth}%)`;
+
+      function update(animate = true) {
+        track.style.transition = animate ? "transform 0.4s ease" : "none";
+        track.style.transform = `translateX(-${index * slideWidth}%)`;
+      }
+
+      btnNext.addEventListener('click', () => {
+        index++;
+        update();
+
+        // If at clone of first slide → jump back to real first
+        if (index === slides.length - 1) {
+          setTimeout(() => {
+            index = 1;
+            update(false); // no animation
+          }, 400); // match transition duration
+        }
+      });
+
+      btnPrev.addEventListener('click', () => {
+        index--;
+        update();
+
+        // If at clone of last slide → jump to real last
+        if (index === 0) {
+          setTimeout(() => {
+            index = slides.length - 2;
+            update(false);
+          }, 400);
+        }
+      });
+
+      // Keyboard support still works
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') btnPrev.click();
+        if (e.key === 'ArrowRight') btnNext.click();
+      });
+    })();
+  </script>
 
 
 

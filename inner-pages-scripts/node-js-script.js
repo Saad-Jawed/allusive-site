@@ -224,3 +224,134 @@ window.addEventListener('resize', () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     setScroll();
 });
+
+// Testimonial Slider Logic 
+// (function () {
+//     const track = document.querySelector('.testimonial-track');
+//     const slides = Array.from(track.querySelectorAll('.testimonial-card'));
+
+//     const btnPrev = document.querySelector('[data-prev]');
+//     const btnNext = document.querySelector('[data-next]');
+
+//     let index = 0;
+
+//     function update() {
+//         // move the track
+//         track.style.transform = `translateX(-${index * 100}%)`;
+
+//         // manage disabled state (remove these two lines if you want infinite loop)
+//         // btnPrev.disabled = index === 0;
+//         // btnNext.disabled = index === slides.length - 1;
+//     }
+
+//     // go to a specific slide (bounds-safe)
+//     function goTo(i) {
+//         index = Math.max(0, Math.min(i, slides.length - 1));
+//         update();
+//     }
+
+//     // wire up clicks
+//     // btnPrev.addEventListener('click', () => goTo(index - 1));
+//     // btnNext.addEventListener('click', () => goTo(index + 1));
+
+//     btnPrev.addEventListener('click', () => {
+//         index = (index - 1 + slides.length) % slides.length;
+//         update();
+//     });
+//     btnNext.addEventListener('click', () => {
+//         index = (index + 1) % slides.length;
+//         update();
+//     });
+
+//     // keyboard support (left/right arrows)
+//     document.addEventListener('keydown', (e) => {
+//         if (e.key === 'ArrowLeft') {
+//             index = (index - 1 + slides.length) % slides.length;
+//             update();
+//         }
+//         if (e.key === 'ArrowRight') {
+//             index = (index + 1) % slides.length;
+//             update();
+//         }
+//     });
+//     // document.addEventListener('keydown', (e) => {
+//     //   if (e.key === 'ArrowLeft') goTo(index - 1);
+//     //   if (e.key === 'ArrowRight') goTo(index + 1);
+//     // });
+
+//     // OPTIONAL: infinite loop version (swap the two click handlers above with this)
+//     // btnPrev.addEventListener('click', () => {
+//     //   index = (index - 1 + slides.length) % slides.length;
+//     //   update();
+//     // });
+//     // btnNext.addEventListener('click', () => {
+//     //   index = (index + 1) % slides.length;
+//     //   update();
+//     // });
+
+//     // initialise
+//     update();
+// })();
+
+(function () {
+    const track = document.querySelector('.testimonial-track');
+    let slides = Array.from(track.querySelectorAll('.testimonial-card'));
+
+    const btnPrev = document.querySelector('[data-prev]');
+    const btnNext = document.querySelector('[data-next]');
+
+    // Clone first and last
+    const firstClone = slides[0].cloneNode(true);
+    const lastClone = slides[slides.length - 1].cloneNode(true);
+
+    firstClone.classList.add('clone');
+    lastClone.classList.add('clone');
+
+    // Append/prepend clones
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, slides[0]);
+
+    // Update slides list after cloning
+    slides = Array.from(track.querySelectorAll('.testimonial-card'));
+
+    let index = 1; // start at first *real* slide
+    const slideWidth = 100; // % (since each is 100%)
+    track.style.transform = `translateX(-${index * slideWidth}%)`;
+
+    function update(animate = true) {
+        track.style.transition = animate ? "transform 0.4s ease" : "none";
+        track.style.transform = `translateX(-${index * slideWidth}%)`;
+    }
+
+    btnNext.addEventListener('click', () => {
+        index++;
+        update();
+
+        // If at clone of first slide → jump back to real first
+        if (index === slides.length - 1) {
+            setTimeout(() => {
+                index = 1;
+                update(false); // no animation
+            }, 400); // match transition duration
+        }
+    });
+
+    btnPrev.addEventListener('click', () => {
+        index--;
+        update();
+
+        // If at clone of last slide → jump to real last
+        if (index === 0) {
+            setTimeout(() => {
+                index = slides.length - 2;
+                update(false);
+            }, 400);
+        }
+    });
+
+    // Keyboard support still works
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') btnPrev.click();
+        if (e.key === 'ArrowRight') btnNext.click();
+    });
+})();
