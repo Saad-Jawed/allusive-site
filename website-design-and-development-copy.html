@@ -1179,8 +1179,10 @@
       color: #585858;
     }
 
-    .cta-button {
-      display: inline-block;
+    .cta-area .cta-button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       background: linear-gradient(to right, #C70FFD, #5707EB);
       color: #fff;
       padding: 0.6rem 2rem;
@@ -1203,6 +1205,10 @@
       box-shadow: 0 0 6px rgba(87, 7, 235, 0.5);
     }
 
+    .cta-button:hover svg path {
+      fill: #5707EB;
+    }
+
     /* Cards Grid */
     .cards-grid {
       flex: 1;
@@ -1211,7 +1217,7 @@
       gap: 2rem;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 981px) {
       .cards-grid {
         flex-direction: row;
         gap: 1.5rem;
@@ -1314,6 +1320,10 @@
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6rem;
     }
 
     .ios-section-container #ios-heading {
@@ -1327,65 +1337,67 @@
 
     #ios-subheading {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: white;
       font-weight: 200;
       max-width: 800px;
-      margin-bottom: 6rem;
       line-height: 1.6;
       word-spacing: 1px;
+      margin-bottom: 2.7rem;
     }
 
-    /* .ios-tabs-interface {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-} */
+    .ios-cta-button {
+      background: linear-gradient(to right, #7200FF, #6C2AC3);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.6rem 5rem 0.9rem 1rem;
+      border-radius: 50px;
+      transition: transform 0.5s ease;
+    }
+
+    .ios-section-content .ios-cta-button:hover {
+      /* color: #7200FF;
+      background: white;
+      box-shadow: 2px 4px 10px #000000a6; */
+      background: white;
+      color: #5707EB;
+      box-shadow: 0 0 6px rgba(87, 7, 235, 0.5);
+    }
 
     .ios-tabs-interface {
       display: flex;
       background-color: #0F0A2A;
-      border-radius: 1rem;
       overflow: hidden;
       height: auto;
       width: 100%;
     }
 
     .ios-tabs-tablist {
-      background-color: #070119;
-      padding: 2.5rem 2rem;
+      background-color: #0701187A;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 0.7rem;
-      border-radius: 1rem 0 0 1rem;
     }
-
-    /* .ios-tabs-tablist {
-  border-radius: 0;
-  background: transparent;
-  padding: 3rem 1rem;
-  flex: 1;
-} */
 
     .ios-tabs-tab {
       background: transparent;
       border: none;
-      color: #ccc;
-      font-size: 1rem;
+      color: #FFFFFF;
+      font-size: 1.2rem;
       text-align: left;
       cursor: pointer;
       transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
       font-weight: 600;
-      gap: 1.5rem;
-      padding: 0;
+      padding-left: 2rem;
+      outline: none;
+      border-bottom: 2px solid #7203FB;
     }
 
-    .ios-tabs-tab {
-      color: rgba(255, 255, 255, 0.4);
+    .ios-tabs-tab--active {
+      background: #561E9A42;
+      border-bottom: none;
     }
 
     .ios-tabs-tab .tab-name {
@@ -1393,31 +1405,22 @@
       width: 100%;
       word-spacing: 2px;
       padding: 1rem 0;
-      border-bottom: 1px solid #222;
       transition: all 0.3s ease;
-    }
-
-    .ios-tabs-tab:hover .tab-no {
-      color: #C20FFC;
     }
 
     .ios-tabs-tab:hover .tab-name {
       color: #FFF;
-      border-bottom-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .ios-tabs-tab--active .tab-no {
-      color: #C20FFC;
     }
 
     .ios-tabs-tab--active .tab-name {
       color: #FFF;
-      border-bottom-color: #fff;
+      /* border-bottom-color: #fff; */
     }
 
     .ios-tabs-panels {
-      flex: 1;
-      border-radius: 0 1rem 1rem 0;
+      /* flex: 1;
+      border-radius: 0 1rem 1rem 0; */
+      display: none;
     }
 
     /* 
@@ -1483,22 +1486,18 @@
       width: fit-content;
     }
 
-    .ios-tabs__cta-btn:hover {
-      background-color: #C20FFC;
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 0 10px rgba(194, 15, 252, 0.5);
-    }
-
     .inner-tab-panel {
       display: none;
-      background: #6C2AC3;
+      background: #561E9A42;
       color: white;
       padding: 1.5rem;
-      /* height: 100%; */
-      margin-top: 0.5rem;
-      border-radius: 0.5rem;
       animation: slideDown 0.3s ease-in-out;
+      margin-top: 0;
+      border-top: 2px solid #7203FB;
+      border-bottom: 2px solid #7203FB;
+      /* height: 100%; */
+      /* margin-top: 0.5rem; */
+      /* border-radius: 0.5rem; */
 
 
       /* padding: 3rem 2rem; */
@@ -1510,7 +1509,7 @@
     }
 
     .inner-tab-panel h3 {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
       color: #fff;
@@ -1518,10 +1517,15 @@
 
     .inner-tab-panel p {
       color: white;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      line-height: 2;
+      /* margin-bottom: 1.5rem; */
       font-size: 0.9rem;
-      font-weight: 100;
+      /* font-weight: 100; */
+      width: 90%;
+    }
+
+    .inner-tab-panel.inner-panel-active {
+      display: block;
     }
 
     @keyframes fadeIn {
@@ -1565,11 +1569,6 @@
       .ios-tabs-interface {
         flex-direction: column;
         min-height: auto;
-      }
-
-      .ios-tabs-tablist {
-        border-radius: 1rem 1rem 0 0;
-        padding: 1.5rem 1rem;
       }
 
       .ios-tabs-tab .tab-name {
@@ -1619,14 +1618,18 @@
     }
 
     /* Desktop specific styles */
-    @media (min-width: 769px) {
-      .inner-tab-panel {
-        display: none !important;
+    @media (min-width: 981px) {
+      .ios-section-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+
+      .ios-section-content {
+        width: 50%;
       }
 
       .ios-tabs-panel {
         height: auto;
-        display: none;
       }
 
       .ios-tabs-panel--active {
@@ -1775,6 +1778,10 @@
       color: #000;
     }
 
+    .testimonial-arrow:hover svg path {
+      fill: #000;
+    }
+
     /* === Responsive === */
     @media (min-width: 768px) {
       .testimonial-header {
@@ -1862,7 +1869,9 @@
     }
 
     .reviews-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
       background: #9F07F5;
       color: white;
       padding: 0.5rem 2.5rem;
@@ -1874,8 +1883,13 @@
     }
 
     .reviews-button:hover {
-      background: #8d05db;
-      color: white;
+      background: white;
+      color: #5707EB;
+      box-shadow: 0 0 6px rgba(87, 7, 235, 0.5);
+    }
+
+    .reviews-button:hover svg path {
+      fill: #5707EB;
     }
 
     /* Slider section */
@@ -1887,7 +1901,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      
+
       /* display: flex;
       justify-content: center;
       align-items: center; */
@@ -1913,7 +1927,7 @@
       background-color: #F8F8FB;
       border-radius: 40px;
       padding: 2rem 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .slide.active {
@@ -1936,12 +1950,20 @@
       gap: 2rem;
     } */
 
+    .award-image {
+      width: 230px;
+      height: 230px;     
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .award-image img {
-      /* max-width: 100%; */
-      /* width: 300px;
-      margin-bottom: 1rem; */
-      width: 250px;
-      margin: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* keeps full image visible */
+      display: block;
     }
 
     /* .award-content {
@@ -2303,9 +2325,10 @@
     }
 
     .sector-card p {
-      font-size: 0.9rem;
+      font-size: 0.93rem;
       color: #595959;
       line-height: 22.97px;
+      margin-bottom: 12px;
     }
 
     .sector-card a {
@@ -2442,6 +2465,19 @@
     }
 
     /* Responsive */
+    @media (max-width: 480px) {
+      summary p.content,
+      summary .number,
+      summary .arrow,
+      details p {
+        font-size: 0.8rem;
+      }
+
+      details p {
+        text-align: left;
+      }
+    }
+
     @media (max-width: 1074px) {
       .faq-section .container {
         flex-direction: column;
@@ -2454,6 +2490,7 @@
 
       .faq-left-info-area {
         width: 100%;
+        align-items: center;
       }
     }
 
@@ -3706,8 +3743,14 @@
 
         </div>
 
-        <div>
-          <a href="#" class="cta-button">Free Consultation &nbsp; <i class="fa-solid fa-arrow-right"></i>
+        <div class="cta-area">
+          <a href="#" class="cta-button">
+            <span>Free Consultation</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="0 0 34 17" fill="none">
+              <path
+                d="M32.9807 9.07502L26.3063 15.7173C26.0662 15.9563 25.741 16.0901 25.4023 16.0894C25.2345 16.089 25.0685 16.0555 24.9137 15.991C24.7588 15.9264 24.6182 15.832 24.4999 15.7131C24.3816 15.5942 24.2878 15.4532 24.224 15.2981C24.1601 15.143 24.1275 14.9768 24.1279 14.809C24.1283 14.6413 24.1617 14.4753 24.2262 14.3204C24.2908 14.1656 24.3852 14.025 24.5041 13.9067L28.9853 9.4454H1.93798C1.59924 9.4454 1.27437 9.31083 1.03485 9.07131C0.795322 8.83178 0.660758 8.50691 0.660758 8.16817C0.660758 7.82944 0.795322 7.50457 1.03485 7.26504C1.27437 7.02552 1.59924 6.89096 1.93798 6.89096H28.9853L24.5049 2.43501C24.2648 2.19601 24.1294 1.87143 24.1286 1.53266C24.1279 1.19388 24.2617 0.868674 24.5007 0.628569C24.7397 0.388464 25.0642 0.253132 25.403 0.252344C25.7418 0.251556 26.067 0.385378 26.3071 0.62437L32.9807 7.2682C33.2201 7.5079 33.3546 7.83283 33.3546 8.17161C33.3546 8.51039 33.2201 8.83532 32.9807 9.07502Z"
+                fill="white" />
+            </svg>
           </a>
         </div>
       </div>
@@ -3805,14 +3848,14 @@
   <section class="ios-multi-platforms-section">
     <div class="ios-section-container">
       <div class="ios-section-content">
-          <h2 class="ios-section-heading" id="ios-heading">Custom iOS App Development Services<br>for Multi-Platforms
-          </h2>
-          <p class="ios-section-subheading" id="ios-subheading">
-            We specialize in creating custom iOS app development services across multiple platforms, providing seamless
-            integration and exceptional user experiences. Our expertise covers a range of Apple devices, delivering
-            tailored iPhone app solutions for your business needs.
-          </p>
-          <a href="#" class="cta-button">Free Consultation</a>
+        <h2 class="ios-section-heading" id="ios-heading">Custom iOS App Development Services for Multi-Platforms
+        </h2>
+        <p class="ios-section-subheading" id="ios-subheading">
+          We specialize in creating custom iOS app development services across multiple platforms, providing seamless
+          integration and exceptional user experiences. Our expertise covers a range of Apple devices, delivering
+          tailored iPhone app solutions for your business needs.
+        </p>
+        <a href="#" class="ios-cta-button">Free Consultation</a>
       </div>
 
       <div class="ios-tabs-interface" role="tablist" aria-label="iOS Platforms Tabs">
@@ -3831,7 +3874,6 @@
               seamless functionality. Using technologies like Swift and Objective-C, our apps are optimized for
               various screen sizes and iOS versions.
             </p>
-            <a href="#" class="ios-tabs__cta-btn">Free Consultation →</a>
           </div>
 
           <button class="ios-tabs-tab" role="tab" aria-selected="false" aria-controls="panel-2" data-target="panel-2"
@@ -3847,7 +3889,6 @@
               Leveraging iPadOS capabilities, our solutions support split-view, multitasking, and large screen
               layouts.
             </p>
-            <a href="#" class="ios-tabs__cta-btn">Free Consultation →</a>
           </div>
 
           <button class="ios-tabs-tab" role="tab" aria-selected="false" aria-controls="panel-3" data-target="panel-3"
@@ -3862,7 +3903,6 @@
               Our team delivers watchOS apps that work seamlessly with iPhones, providing glanceable information,
               health integrations, and lightweight interactions through custom UIs.
             </p>
-            <a href="#" class="ios-tabs__cta-btn">Free Consultation →</a>
           </div>
 
           <button class="ios-tabs-tab" role="tab" aria-selected="false" aria-controls="panel-4" data-target="panel-4"
@@ -3877,7 +3917,6 @@
               We develop Apple TV apps that deliver immersive, media-rich experiences using the tvOS platform,
               optimized for remote-based interactions and high-resolution screens.
             </p>
-            <a href="#" class="ios-tabs__cta-btn">Free Consultation →</a>
           </div>
 
           <button class="ios-tabs-tab" role="tab" aria-selected="false" aria-controls="panel-5" data-target="panel-5"
@@ -3892,7 +3931,6 @@
               We build macOS applications that complement your iOS ecosystem, using SwiftUI or AppKit to create
               seamless desktop-grade experiences across devices.
             </p>
-            <a href="#" class="ios-tabs__cta-btn">Free Consultation →</a>
           </div>
         </div>
 
@@ -4116,10 +4154,23 @@
       <!-- Arrows -->
       <div class="testimonial-nav">
         <button aria-label="Previous testimonial" class="testimonial-arrow" data-prev>
-          <i class="fa-solid fa-arrow-left"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="0 0 34 17" fill="#d5d5d5">
+            <g transform="translate(34,0) scale(-1,1)">
+              <path
+                d="M32.9807 9.07502L26.3063 15.7173C26.0662 15.9563 25.741 16.0901 25.4023 16.0894C25.2345 16.089 25.0685 16.0555 24.9137 15.991C24.7588 15.9264 24.6182 15.832 24.4999 15.7131C24.3816 15.5942 24.2878 15.4532 24.224 15.2981C24.1601 15.143 24.1275 14.9768 24.1279 14.809C24.1283 14.6413 24.1617 14.4753 24.2262 14.3204C24.2908 14.1656 24.3852 14.025 24.5041 13.9067L28.9853 9.4454H1.93798C1.59924 9.4454 1.27437 9.31083 1.03485 9.07131C0.795322 8.83178 0.660758 8.50691 0.660758 8.16817C0.660758 7.82944 0.795322 7.50457 1.03485 7.26504C1.27437 7.02552 1.59924 6.89096 1.93798 6.89096H28.9853L24.5049 2.43501C24.2648 2.19601 24.1294 1.87143 24.1286 1.53266C24.1279 1.19388 24.2617 0.868674 24.5007 0.628569C24.7397 0.388464 25.0642 0.253132 25.403 0.252344C25.7418 0.251556 26.067 0.385378 26.3071 0.62437L32.9807 7.2682C33.2201 7.5079 33.3546 7.83283 33.3546 8.17161C33.3546 8.51039 33.2201 8.83532 32.9807 9.07502Z"
+                fill="#d5d5d5" />
+            </g>
+          </svg>
+
+
         </button>
         <button aria-label="Next testimonial" class="testimonial-arrow" data-next>
-          <i class="fa-solid fa-arrow-right"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="0 0 34 17" fill="#d5d5d5">
+            <path
+              d="M32.9807 9.07502L26.3063 15.7173C26.0662 15.9563 25.741 16.0901 25.4023 16.0894C25.2345 16.089 25.0685 16.0555 24.9137 15.991C24.7588 15.9264 24.6182 15.832 24.4999 15.7131C24.3816 15.5942 24.2878 15.4532 24.224 15.2981C24.1601 15.143 24.1275 14.9768 24.1279 14.809C24.1283 14.6413 24.1617 14.4753 24.2262 14.3204C24.2908 14.1656 24.3852 14.025 24.5041 13.9067L28.9853 9.4454H1.93798C1.59924 9.4454 1.27437 9.31083 1.03485 9.07131C0.795322 8.83178 0.660758 8.50691 0.660758 8.16817C0.660758 7.82944 0.795322 7.50457 1.03485 7.26504C1.27437 7.02552 1.59924 6.89096 1.93798 6.89096H28.9853L24.5049 2.43501C24.2648 2.19601 24.1294 1.87143 24.1286 1.53266C24.1279 1.19388 24.2617 0.868674 24.5007 0.628569C24.7397 0.388464 25.0642 0.253132 25.403 0.252344C25.7418 0.251556 26.067 0.385378 26.3071 0.62437L32.9807 7.2682C33.2201 7.5079 33.3546 7.83283 33.3546 8.17161C33.3546 8.51039 33.2201 8.83532 32.9807 9.07502Z"
+              fill="#d5d5d5" />
+          </svg>
+
         </button>
       </div>
     </div>
@@ -4130,96 +4181,105 @@
     <div class="awards-sec-container">
       <div class="awards-sec-content">
         <h2 class="awards-title">Awards & Recognitions</h2>
-        <p class="awards-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </p>
+        <p class="awards-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation </p>
 
-        <a href="#" class="reviews-button">Check Reviews &nbsp; <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" class="reviews-button">
+          <span>Check Reviews</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="0 0 34 17" fill="white">
+            <path
+              d="M32.9807 9.07502L26.3063 15.7173C26.0662 15.9563 25.741 16.0901 25.4023 16.0894C25.2345 16.089 25.0685 16.0555 24.9137 15.991C24.7588 15.9264 24.6182 15.832 24.4999 15.7131C24.3816 15.5942 24.2878 15.4532 24.224 15.2981C24.1601 15.143 24.1275 14.9768 24.1279 14.809C24.1283 14.6413 24.1617 14.4753 24.2262 14.3204C24.2908 14.1656 24.3852 14.025 24.5041 13.9067L28.9853 9.4454H1.93798C1.59924 9.4454 1.27437 9.31083 1.03485 9.07131C0.795322 8.83178 0.660758 8.50691 0.660758 8.16817C0.660758 7.82944 0.795322 7.50457 1.03485 7.26504C1.27437 7.02552 1.59924 6.89096 1.93798 6.89096H28.9853L24.5049 2.43501C24.2648 2.19601 24.1294 1.87143 24.1286 1.53266C24.1279 1.19388 24.2617 0.868674 24.5007 0.628569C24.7397 0.388464 25.0642 0.253132 25.403 0.252344C25.7418 0.251556 26.067 0.385378 26.3071 0.62437L32.9807 7.2682C33.2201 7.5079 33.3546 7.83283 33.3546 8.17161C33.3546 8.51039 33.2201 8.83532 32.9807 9.07502Z"
+              fill="white" />
+          </svg>
+
+        </a>
       </div>
 
       <div class="slider-wrapper">
         <button aria-label="Previous Award" class="nav-button left" id="prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 30 19" fill="none">
-                <path
-                    d="M0.709112 8.82877C0.217052 9.32084 0.217052 10.1186 0.709112 10.6107L8.7277 18.6293C9.21976 19.1213 10.0176 19.1213 10.5096 18.6293C11.0017 18.1372 11.0017 17.3394 10.5096 16.8474L3.38198 9.71973L10.5096 2.59209C11.0017 2.10003 11.0017 1.30224 10.5096 0.810183C10.0176 0.318124 9.21976 0.318124 8.7277 0.810183L0.709112 8.82877ZM29.3201 9.71973L29.3201 8.45973L1.60007 8.45973L1.60007 9.71973L1.60007 10.9797L29.3201 10.9797L29.3201 9.71973Z"
-                    fill="black" />
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 30 19" fill="none">
+            <path
+              d="M0.709112 8.82877C0.217052 9.32084 0.217052 10.1186 0.709112 10.6107L8.7277 18.6293C9.21976 19.1213 10.0176 19.1213 10.5096 18.6293C11.0017 18.1372 11.0017 17.3394 10.5096 16.8474L3.38198 9.71973L10.5096 2.59209C11.0017 2.10003 11.0017 1.30224 10.5096 0.810183C10.0176 0.318124 9.21976 0.318124 8.7277 0.810183L0.709112 8.82877ZM29.3201 9.71973L29.3201 8.45973L1.60007 8.45973L1.60007 9.71973L1.60007 10.9797L29.3201 10.9797L29.3201 9.71973Z"
+              fill="black" />
+          </svg>
         </button>
-        
+
 
         <div class="slider" id="award-slider" aria-live="polite" tabindex="0">
-            <!-- Award 1 -->
-            <div class="slide active">
-                <div class="award">
-                    <div class="award-image">
-                        <img src="assets/img/logos/award-1.png" alt="Award 1" loading="lazy">
-                    </div>
-                    <div class="award-content">
-                        <h3>Lorem, ipsum.</h3>
-                        <p>Top Web Development Company 2023</p>
-                    </div>
-                </div>
+          <!-- Award 1 -->
+          <div class="slide active">
+            <div class="award">
+              <div class="award-image">
+                <img src="assets/img/logos/award-1.png" alt="Award 1" loading="lazy">
+              </div>
+              <div class="award-content">
+                <h3>Lorem, ipsum.</h3>
+                <p>Top Web Development Company 2023</p>
+              </div>
             </div>
+          </div>
 
-            <!-- Award 2 -->
-            <div class="slide">
-                <div class="award">
-                    <div class="award-image">
-                        <img src="assets/img/logos/logo-images-02.png" alt="Award 2" loading="lazy">
-                    </div>
-                    <div class="award-content">
-                        <h3>Lorem, ipsum.</h3>
-                        <p>Top Web Development Company 2023</p>
-                    </div>
-                </div>
+          <!-- Award 2 -->
+          <div class="slide">
+            <div class="award">
+              <div class="award-image">
+                <img src="assets/img/logos/award-2.png" alt="Award 2" loading="lazy">
+              </div>
+              <div class="award-content">
+                <h3>Lorem, ipsum.</h3>
+                <p>Top Web Development Company 2023</p>
+              </div>
             </div>
+          </div>
 
-            <!-- Award 3 -->
-            <div class="slide">
-                <div class="award">
-                    <div class="award-image">
-                        <img src="assets/img/logos/logo-images-03.png" alt="Award 3" loading="lazy">
-                    </div>
-                    <div class="award-content">
-                        <h3>Lorem, ipsum.</h3>
-                        <p>Top Web Development Company 2023</p>
-                    </div>
-                </div>
+          <!-- Award 3 -->
+          <div class="slide">
+            <div class="award">
+              <div class="award-image">
+                <img src="assets/img/logos/award-3.png" alt="Award 3" loading="lazy">
+              </div>
+              <div class="award-content">
+                <h3>Lorem, ipsum.</h3>
+                <p>Top Web Development Company 2023</p>
+              </div>
             </div>
+          </div>
 
-            <!-- Award 4 -->
-            <div class="slide">
-                <div class="award">
-                    <div class="award-image">
-                        <img src="assets/img/logos/logo-images-04.png" alt="Award 4" loading="lazy">
-                    </div>
-                    <div class="award-content">
-                        <h3>Lorem, ipsum.</h3>
-                        <p>Top Web Development Company 2023</p>
-                    </div>
-                </div>
+          <!-- Award 4 -->
+          <div class="slide">
+            <div class="award">
+              <div class="award-image">
+                <img src="assets/img/logos/award-4.png" alt="Award 4" loading="lazy">
+              </div>
+              <div class="award-content">
+                <h3>Lorem, ipsum.</h3>
+                <p>Top Web Development Company 2023</p>
+              </div>
             </div>
+          </div>
 
-            <!-- Award 5 -->
-            <div class="slide">
-                <div class="award">
-                    <div class="award-image">
-                        <img src="assets/img/logos/logo-images-05.png" alt="Award 5" loading="lazy">
-                    </div>
-                    <div class="award-content">
-                        <h3>Lorem, ipsum.</h3>
-                        <p>Top Web Development Company 2023</p>
-                    </div>
-                </div>
+          <!-- Award 5 -->
+          <div class="slide">
+            <div class="award">
+              <div class="award-image">
+                <img src="assets/img/logos/award-5.png" alt="Award 5" loading="lazy">
+              </div>
+              <div class="award-content">
+                <h3>Lorem, ipsum.</h3>
+                <p>Top Web Development Company 2023</p>
+              </div>
             </div>
+          </div>
         </div>
 
         <button aria-label="Next Award" class="nav-button right" id="next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 20" fill="none">
-                <path
-                    d="M29.4308 10.8704C29.9228 10.3784 29.9228 9.5806 29.4308 9.08854L21.4122 1.06995C20.9201 0.577888 20.1223 0.577888 19.6303 1.06995C19.1382 1.56201 19.1382 2.3598 19.6303 2.85186L26.7579 9.97949L19.6303 17.1071C19.1382 17.5992 19.1382 18.397 19.6303 18.889C20.1223 19.3811 20.9201 19.3811 21.4122 18.889L29.4308 10.8704ZM0.819824 9.97949V11.2395H28.5398V9.97949V8.71949H0.819824V9.97949Z"
-                    fill="black" />
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 20" fill="none">
+            <path
+              d="M29.4308 10.8704C29.9228 10.3784 29.9228 9.5806 29.4308 9.08854L21.4122 1.06995C20.9201 0.577888 20.1223 0.577888 19.6303 1.06995C19.1382 1.56201 19.1382 2.3598 19.6303 2.85186L26.7579 9.97949L19.6303 17.1071C19.1382 17.5992 19.1382 18.397 19.6303 18.889C20.1223 19.3811 20.9201 19.3811 21.4122 18.889L29.4308 10.8704ZM0.819824 9.97949V11.2395H28.5398V9.97949V8.71949H0.819824V9.97949Z"
+              fill="black" />
+          </svg>
         </button>
-    </div>
+      </div>
       <!-- <div class="awards-slider-container">
         <button class="slider-btn left" onclick="prevSlide()">&#8592;</button>
         <div class="slider" id="awardSlider">
@@ -4586,95 +4646,96 @@
     <div class="industries-container">
       <div class="indus-content">
         <h2>Industries We Serve</h2>
-        <p>As a top-grade iOS app development agency, we deliver solutions for a wide range of industries, addressing specific challenges and driving growth across various sectors.</p>
+        <p>As a top-grade iOS app development agency, we deliver solutions for a wide range of industries, addressing
+          specific challenges and driving growth across various sectors.</p>
       </div>
 
       <div class="sectors-grid">
         <!-- Card 1 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-cart.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-cart.svg" alt="Ecommerce Icon">
             <h3>Ecommerce</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 2 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-fintech.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-fintech.svg" alt="Ecommerce Icon">
             <h3>Fintech</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 3 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/inuds-healthcare.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/inuds-healthcare.svg" alt="Ecommerce Icon">
             <h3>Healthcare</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 4 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-education.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-education.svg" alt="Ecommerce Icon">
             <h3>Education</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 5 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-social-media.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-social-media.svg" alt="Ecommerce Icon">
             <h3>Social Media</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 6 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-real-state.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-real-state.svg" alt="Ecommerce Icon">
             <h3>Real Estate</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 7 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-logistics.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-logistics.svg" alt="Ecommerce Icon">
             <h3>Logistics</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
         <!-- Card 8 -->
         <div class="sector-card">
           <div class="sector-card-header">
-            <img src="assets/img/icon/indus-music.svg" alt="Ecommerce Icon"> 
+            <img src="assets/img/icon/indus-music.svg" alt="Ecommerce Icon">
             <h3>Music</h3>
           </div>
           <p>
-            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping 
+            We at BitsWits create powerful e-commerce apps, transforming your business with seamless shopping
           </p>
           <a href="#">LEARN MORE..</a>
         </div>
@@ -5245,14 +5306,15 @@
 
       const tabs = tabSection.querySelectorAll(".ios-tabs-tab");
       const innerPanels = tabSection.querySelectorAll(".inner-tab-panel");
-      const outerPanels = tabSection.querySelectorAll(".ios-tabs-panel");
 
-      function isMobileLayout() {
-        return window.innerWidth <= 768;
-      }
+      // const outerPanels = tabSection.querySelectorAll(".ios-tabs-panel");
+
+      // function isMobileLayout() {
+      //   return window.innerWidth <= 768;
+      // }
 
       function switchTab(clickedTab) {
-        const targetPanel = clickedTab.getAttribute("data-target");
+        // const targetPanel = clickedTab.getAttribute("data-target");
         const innerPanel = clickedTab.getAttribute("data-inner");
 
         // Remove active class from all tabs
@@ -5262,9 +5324,9 @@
         });
 
         // Hide all outer panels
-        outerPanels.forEach(panel => {
-          panel.classList.remove("ios-tabs-panel--active");
-        });
+        // outerPanels.forEach(panel => {
+        //   panel.classList.remove("ios-tabs-panel--active");
+        // });
 
         // Hide all inner panels
         innerPanels.forEach(panel => {
@@ -5275,19 +5337,24 @@
         clickedTab.classList.add("ios-tabs-tab--active");
         clickedTab.setAttribute("aria-selected", "true");
 
-        if (isMobileLayout()) {
-          // Show inner panel on mobile
-          const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
-          if (activeInnerPanel) {
-            activeInnerPanel.classList.add("inner-panel-active");
-          }
-        } else {
-          // Show outer panel on desktop
-          const activeOuterPanel = tabSection.querySelector(`#${targetPanel}`);
-          if (activeOuterPanel) {
-            activeOuterPanel.classList.add("ios-tabs-panel--active");
-          }
+        const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
+        if (activeInnerPanel) {
+          activeInnerPanel.classList.add("inner-panel-active");
         }
+
+        // if (isMobileLayout()) {
+        //   // Show inner panel on mobile
+        //   const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
+        //   if (activeInnerPanel) {
+        //     activeInnerPanel.classList.add("inner-panel-active");
+        //   }
+        // } else {
+        //   // Show outer panel on desktop
+        //   const activeOuterPanel = tabSection.querySelector(`#${targetPanel}`);
+        //   if (activeOuterPanel) {
+        //     activeOuterPanel.classList.add("ios-tabs-panel--active");
+        //   }
+        // }
       }
 
       // Add click event listeners to all tabs
@@ -5298,17 +5365,17 @@
       });
 
       // Handle window resize
-      let resizeTimer;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          // Re-trigger the active tab to ensure proper display
-          const activeTab = tabSection.querySelector(".ios-tabs-tab--active");
-          if (activeTab) {
-            switchTab(activeTab);
-          }
-        }, 250);
-      });
+      // let resizeTimer;
+      // window.addEventListener("resize", () => {
+      //   clearTimeout(resizeTimer);
+      //   resizeTimer = setTimeout(() => {
+      //     // Re-trigger the active tab to ensure proper display
+      //     const activeTab = tabSection.querySelector(".ios-tabs-tab--active");
+      //     if (activeTab) {
+      //       switchTab(activeTab);
+      //     }
+      //   }, 250);
+      // });
 
       // Initialize the first tab as active
       if (tabs.length > 0) {
