@@ -705,7 +705,8 @@ video#preloader-video {
     }
 
     .header-logo img {
-        max-width: 150px;
+        /* max-width: 150px; */
+        max-width: 200px;
     }
 
     .header-menu-wrap {
@@ -759,7 +760,8 @@ video#preloader-video {
     }
 
     .header-logo img {
-        max-width: 150px;
+        /* max-width: 150px; */
+        max-width: 200px;
     }
 
     .slide-button {
@@ -778,7 +780,8 @@ video#preloader-video {
 
 @media (min-width: 1024px) {
     .header-logo img {
-        max-width: 150px;
+        /* max-width: 150px; */
+        max-width: 200px;
     }
 
     .header-right .sidebar-icon button {
@@ -1215,11 +1218,37 @@ section.tech-section {
     }
 }
 
+@media (max-width: 480px) {
+    .tech-stack-card .card-back {
+        padding: 0.7rem;
+    }
+    
+    .card-back h3 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+        padding-top: 1rem;
+        color: #7200FF;
+    }
+
+    .card-back .details {
+        font-size: 0.6rem;
+        line-height: 1.4;
+        color: #000;
+        margin-bottom: 0;
+        width: 99%;
+    }
+
+    .card-back .card-cta {
+        padding: 4px 0;
+    }
+}
+
 
 @media (max-width: 600px) {
     .tech-stack-grid .tech-stack-card {
         padding: 1.2rem;
-        min-height: auto;
+        /* min-height: auto; */
     }
 }
 
@@ -1314,6 +1343,7 @@ section.project-section .container {
     transition: all 0.3s ease;
     font-weight: 600;
     word-spacing: 2px;
+    font: inherit;
 }
 
 .learn-more:hover {

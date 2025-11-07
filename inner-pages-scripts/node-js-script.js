@@ -73,14 +73,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const tabs = tabSection.querySelectorAll(".ios-tabs-tab");
     const innerPanels = tabSection.querySelectorAll(".inner-tab-panel");
-    const outerPanels = tabSection.querySelectorAll(".ios-tabs-panel");
 
-    function isMobileLayout() {
-        return window.innerWidth <= 768;
-    }
+    // const outerPanels = tabSection.querySelectorAll(".ios-tabs-panel");
+
+    // function isMobileLayout() {
+    //   return window.innerWidth <= 768;
+    // }
 
     function switchTab(clickedTab) {
-        const targetPanel = clickedTab.getAttribute("data-target");
+        // const targetPanel = clickedTab.getAttribute("data-target");
         const innerPanel = clickedTab.getAttribute("data-inner");
 
         // Remove active class from all tabs
@@ -90,9 +91,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // Hide all outer panels
-        outerPanels.forEach(panel => {
-            panel.classList.remove("ios-tabs-panel--active");
-        });
+        // outerPanels.forEach(panel => {
+        //   panel.classList.remove("ios-tabs-panel--active");
+        // });
 
         // Hide all inner panels
         innerPanels.forEach(panel => {
@@ -103,19 +104,24 @@ document.addEventListener("DOMContentLoaded", function () {
         clickedTab.classList.add("ios-tabs-tab--active");
         clickedTab.setAttribute("aria-selected", "true");
 
-        if (isMobileLayout()) {
-            // Show inner panel on mobile
-            const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
-            if (activeInnerPanel) {
-                activeInnerPanel.classList.add("inner-panel-active");
-            }
-        } else {
-            // Show outer panel on desktop
-            const activeOuterPanel = tabSection.querySelector(`#${targetPanel}`);
-            if (activeOuterPanel) {
-                activeOuterPanel.classList.add("ios-tabs-panel--active");
-            }
+        const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
+        if (activeInnerPanel) {
+            activeInnerPanel.classList.add("inner-panel-active");
         }
+
+        // if (isMobileLayout()) {
+        //   // Show inner panel on mobile
+        //   const activeInnerPanel = tabSection.querySelector(`#${innerPanel}`);
+        //   if (activeInnerPanel) {
+        //     activeInnerPanel.classList.add("inner-panel-active");
+        //   }
+        // } else {
+        //   // Show outer panel on desktop
+        //   const activeOuterPanel = tabSection.querySelector(`#${targetPanel}`);
+        //   if (activeOuterPanel) {
+        //     activeOuterPanel.classList.add("ios-tabs-panel--active");
+        //   }
+        // }
     }
 
     // Add click event listeners to all tabs
@@ -126,17 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Handle window resize
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            // Re-trigger the active tab to ensure proper display
-            const activeTab = tabSection.querySelector(".ios-tabs-tab--active");
-            if (activeTab) {
-                switchTab(activeTab);
-            }
-        }, 250);
-    });
+    // let resizeTimer;
+    // window.addEventListener("resize", () => {
+    //   clearTimeout(resizeTimer);
+    //   resizeTimer = setTimeout(() => {
+    //     // Re-trigger the active tab to ensure proper display
+    //     const activeTab = tabSection.querySelector(".ios-tabs-tab--active");
+    //     if (activeTab) {
+    //       switchTab(activeTab);
+    //     }
+    //   }, 250);
+    // });
 
     // Initialize the first tab as active
     if (tabs.length > 0) {
